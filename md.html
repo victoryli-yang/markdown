@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- css -->
+    <style media="screen">
+        html {
+            font-size: 20px;
+        }
+        .content {
+            display: flex;
+            flex-flow: row wrap;
+            justify-content: flex-start;
+        }
+        #id-md {
+            min-width: 20rem;
+            min-height: 25rem;
+            padding: 0.5rem;
+            resize: none;
+            
+            vertical-align
+            border: none;
+            border-right: 1px solid #ccc;
+
+            background: #f6f6f6;
+
+            font-family:'Monaco', courier, monospace;
+
+        }
+        #id-content {
+            width: 20rem;
+            height: 25rem;
+            padding: 0.5rem;
+            background: #f6f6f6;
+
+            word-wrap:break-word;
+            overflow: auto;
+
+            font-family: 'Helvetica Neue', Arial, sans-serif ;
+
+        }
+
+
+    </style>
+
+    <!-- 引入 remarkable 库 -->
+    <script src="http://cdn.bootcss.com/remarkable/1.7.1/remarkable.min.js"></script>
+    <title>md editor</title>
+</head>
+<body>
+    <div class="content">
+        <div class="input">
+            <h3>文本输入</h3>
+            <textarea id="id-md" placeholder="# 支持标准 markdown 语法, 快来试试吧"></textarea>
+        </div>
+        <div class="output">
+            <h3>文本预览</h3>
+            <div id="id-content"></div>
+        </div>
+
+    </div>
+
+    <script>
+        const e = (sel) => document.querySelector(sel)
+        var md = new Remarkable()
+        e('#id-md').addEventListener('keyup', function(event){
+            var src = event.target.value
+            var content = md.render(src)
+            e('#id-content').innerHTML = content
+        })
+    </script>
+</body>
+</html>
